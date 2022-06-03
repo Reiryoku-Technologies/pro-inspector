@@ -1,1 +1,1 @@
-module.exports = require("../../src/ProInspector.js");
+export * from "../../src/ProInspector.js";
