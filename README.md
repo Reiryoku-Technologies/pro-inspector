@@ -87,7 +87,7 @@ const myObject = {
 In this way Pro Inspector will be enabled only for the object above when logged with `console`.
 
 ### Options
-Few options are available since the projecy is new and not in a stable phase.
+Few options are available since the project is new and not in a stable phase.
 
 #### spaces
 Determines the tab size, default is 4.
@@ -95,6 +95,6 @@ Determines the tab size, default is 4.
 ```javascript
 import { ProInspector, } from "@reiryoku/pro-inspector";
 
-// Set tab size to 2.
+// Set tab size to 2
 ProInspector.globalOptions.spaces = 2;
 ```
