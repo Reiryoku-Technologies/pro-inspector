@@ -1,0 +1,11 @@
+{
+    "name": "@reiryoku/pro-inspector",
+    "version": "0.0.1",
+    "type": "module",
+    "main": "entry/node/main.js",
+    "files": [
+        "entry",
+        "src",
+        "inspectors.js"
+    ]
+}
