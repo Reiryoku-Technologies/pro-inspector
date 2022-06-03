@@ -1,6 +1,6 @@
 {
     "name": "@reiryoku/pro-inspector",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "module",
     "main": "entry/node/main.js",
     "files": [
