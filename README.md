@@ -98,3 +98,10 @@ import { ProInspector, } from "@reiryoku/pro-inspector";
 // Set tab size to 2
 ProInspector.globalOptions.spaces = 2;
 ```
+
+## Todo
+A list of tasks for the future.
+
+- [x] Create a format for arrays
+- [ ] Create a format for maps, weak maps and sets
+- [ ] Allow using custom syntax highlight colors
