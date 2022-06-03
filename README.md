@@ -47,3 +47,41 @@ This is the log with Pro Inspector.
 <p align="center">
     <img src="images/introduction.png" alt=""/>
 </p>
+
+## Installation
+```console
+npm i @reiryoku/pro-inspector
+```
+
+## Usage
+Pro Inspector can be activated globally for every log by using `activateGlobally()`
+in the program entry point.
+
+```javascript
+import { ProInspector, } from "@reiryoku/pro-inspector";
+
+ProInspector.activateGlobally();
+```
+
+In alternative you can use Pro Inspector only on certain objects/classes.
+
+```javascript
+import { ProInspector, } from "@reiryoku/pro-inspector";
+
+const myObject = {
+    fullName: "Jessica Chen",
+    
+    get age () {
+        return 22;
+    },
+    
+    async destroy () {
+        // ...
+    },
+    
+    [ProInspector.inspector] () {
+        return ProInspector.inspect(this);
+    }
+};
+```
+In this way Pro Inspector will be enabled only for the object above when logged with `console`.
