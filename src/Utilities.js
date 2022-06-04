@@ -51,7 +51,15 @@ export const spaces = (depth) => {
     return spaces;
 };
 
-
-export const magenta = (text) => {
-    return `\x1b[35m${text}\x1b[0m`;
+export const getFunctionParameters = (value) => {
+    return (Function.toString.call(value))
+        .replace(/[/][/].*$/mg,'')
+        .replace(/\s+/g, '')
+        .replace(/[/][*][^/*]*[*][/]/g, '')
+        .split('){', 1)[0].replace(/^[^(]*[(]/, '')
+        .replace(/=[^,]+/g, '')
+        .split(',').filter(Boolean);
 };
+
+export const magenta = (text) => `\x1b[35m${text}\x1b[0m`;
+export const yellow = (text) => `\x1b[33m${text}\x1b[0m`;

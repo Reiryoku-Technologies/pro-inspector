@@ -7,6 +7,7 @@ const defaultOptions = {
     hiddenProperties: [ "constructor", ],
     overrideDescriptors: {},
     arrayMaxLength: 100,
+    showFunctionParameters: true,
 };
 
 const globalOptions = {
@@ -89,6 +90,11 @@ const inspect = (entity, options = {}, depth = 1) => {
             }
 
             representation += `${spaces(depth - 1)}}`;
+
+            break;
+        }
+        case "function": {
+            representation += getInspectorByType("Function").inspect({ value: entity, }, finalOptions, depth);
 
             break;
         }

@@ -1,5 +1,5 @@
 import { ProInspector, } from "./src/ProInspector.js";
-import { magenta, spaces, } from "./src/Utilities.js";
+import {magenta, yellow, spaces, getFunctionParameters,} from "./src/Utilities.js";
 
 export const inspectors = [
     {
@@ -32,7 +32,7 @@ export const inspectors = [
                 inspection += `${propertyName}: `;
             }
 
-            inspection += magenta(JSON.stringify(value));
+            inspection += yellow(JSON.stringify(value));
 
             return inspection;
         },
@@ -42,7 +42,7 @@ export const inspectors = [
         isOwner ({ value, }) {
             return typeof value === "function";
         },
-        inspect ({ value, propertyName, }) {
+        inspect ({ value, propertyName, }, options) {
             let inspection = "";
 
             if (value.constructor.name === "AsyncFunction") {
@@ -52,8 +52,30 @@ export const inspectors = [
             if (propertyName) {
                 inspection += `${propertyName} `;
             }
+            else if (value.name) {
+                inspection += `${value.name} `;
+            }
 
-            inspection += `${magenta("()")}`;
+            inspection += `${magenta("(")}`;
+
+            if (options.showFunctionParameters) {
+                const parametersNames = getFunctionParameters(value);
+                for (let i = 0; i < parametersNames.length; ++i) {
+                    const parameterName = parametersNames[i];
+                    const nextParameterName = parametersNames[i + 1];
+
+                    inspection += "\x1b[2m";
+                    inspection += parameterName;
+
+                    if (nextParameterName) {
+                        inspection += ", ";
+                    }
+
+                    inspection += "\x1b[0m";
+                }
+            }
+
+            inspection += `${magenta(")")}`;
 
             return inspection;
         },
@@ -63,9 +85,17 @@ export const inspectors = [
         isOwner ({ value, }) {
             return Array.isArray(value);
         },
-        inspect ({ value, propertyName, }, options, depth) {
+        inspect ({ value, propertyName, propertyDescriptor, }, options, depth) {
             let inspection = "";
             let insertionsLength = 0;
+
+            if (propertyDescriptor) {
+                const { get, set, writable, } = propertyDescriptor;
+
+                if ((get && !set) || (!get && !set && !writable)) {
+                    inspection += `${magenta("readonly")} `;
+                }
+            }
 
             if (propertyName) {
                 inspection += `${propertyName}: `;

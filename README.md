@@ -103,5 +103,8 @@ ProInspector.globalOptions.spaces = 2;
 A list of tasks for the future.
 
 - [x] Create a format for arrays
+- [x] Show functions/methods named parameters
 - [ ] Create a format for maps, weak maps and sets
 - [ ] Allow using custom syntax highlight colors
+
+Create an issue to suggest improvements and/or report a bug.
