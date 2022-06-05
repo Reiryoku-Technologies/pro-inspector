@@ -103,7 +103,15 @@ export const inspectors = [
 
             inspection += magenta(`Array(${value.length})`);
 
+            if (value.length === 0) {
+                inspection += " []";
+
+                return inspection;
+            }
+
             if (options.arrayMaxLength === 0) {
+                inspection += " [ . . . ]";
+
                 return inspection;
             }
 

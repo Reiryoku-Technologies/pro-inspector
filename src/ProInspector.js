@@ -26,7 +26,7 @@ const inspect = (entity, options = {}, depth = 1) => {
                 break;
             }
 
-            representation += `${magenta("object")} {`;
+            representation += `${magenta("object")} ${entity.constructor.name} {`;
 
             const descriptors = getPropertiesDescriptors(entity);
             const functionsDescriptors = [];

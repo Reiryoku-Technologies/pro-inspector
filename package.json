@@ -1,6 +1,6 @@
 {
     "name": "@reiryoku/pro-inspector",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "MIT",
     "type": "module",
     "main": "entry/node/main.js",
