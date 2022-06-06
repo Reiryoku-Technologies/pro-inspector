@@ -1,5 +1,5 @@
 import { ProInspector, } from "./src/ProInspector.js";
-import {magenta, yellow, spaces, getFunctionParameters,} from "./src/Utilities.js";
+import { magenta, yellow, spaces, getFunctionParameters, } from "./src/Utilities.js";
 
 export const inspectors = [
     {
@@ -131,6 +131,32 @@ export const inspectors = [
             }
 
             inspection += `${spaces(depth - 1)}]`
+
+            return inspection;
+        },
+    },
+    {
+        type: "Object",
+        isOwner ( {value, }) {
+            return typeof value === "object";
+        },
+        inspect ({ value, propertyName, propertyDescriptor, }, options, depth) {
+            let inspection = "";
+            let insertionsLength = 0;
+
+            if (propertyDescriptor) {
+                const { get, set, writable, } = propertyDescriptor;
+
+                if ((get && !set) || (!get && !set && !writable)) {
+                    inspection += `${magenta("readonly")} `;
+                }
+            }
+
+            if (propertyName) {
+                inspection += `${propertyName}: `;
+            }
+
+            inspection += ProInspector.inspect(value, options, depth);
 
             return inspection;
         },
