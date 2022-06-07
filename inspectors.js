@@ -1,7 +1,6 @@
-import { ProInspector, } from "./src/ProInspector.js";
-import { magenta, yellow, spaces, getFunctionParameters, } from "./src/Utilities.js";
+const { magenta, yellow, spaces, getFunctionParameters, } = require("./src/Utilities");
 
-export const inspectors = [
+const inspectors = [
     {
         type: "Primitive",
         isOwner ({ value, }) {
@@ -86,6 +85,7 @@ export const inspectors = [
             return Array.isArray(value);
         },
         inspect ({ value, propertyName, propertyDescriptor, }, options, depth) {
+            const { ProInspector, } = require("./src/ProInspector");
             let inspection = "";
             let insertionsLength = 0;
 
@@ -141,6 +141,7 @@ export const inspectors = [
             return typeof value === "object";
         },
         inspect ({ value, propertyName, propertyDescriptor, }, options, depth) {
+            const { ProInspector, } = require("./src/ProInspector");
             let inspection = "";
             let insertionsLength = 0;
 
@@ -163,6 +164,11 @@ export const inspectors = [
     },
 ];
 
-export const getInspectorByType = (type) => {
+const getInspectorByType = (type) => {
     return inspectors.find((inspector) => inspector.type === type);
+};
+
+module.exports = {
+    inspectors,
+    getInspectorByType,
 };

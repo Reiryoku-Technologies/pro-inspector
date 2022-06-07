@@ -1,6 +1,4 @@
-import { ProInspector, } from "./ProInspector.js";
-
-export const getPropertiesDescriptors = (object) => {
+const getPropertiesDescriptors = (object) => {
     const descriptors = new Map();
 
     do {
@@ -15,7 +13,7 @@ export const getPropertiesDescriptors = (object) => {
     return descriptors;
 };
 
-export const mergeOptions = (initial, primary) => {
+const mergeOptions = (initial, primary) => {
     const options = {
         ...initial,
         ...primary,
@@ -41,17 +39,17 @@ export const mergeOptions = (initial, primary) => {
     return options;
 }
 
-export const spaces = (depth) => {
+const spaces = (depth) => {
     let spaces = "";
 
     for (let i = 0; i < depth; ++i) {
-        spaces += " ".repeat(ProInspector.globalOptions.spaces);
+        spaces += " ".repeat(4);
     }
 
     return spaces;
 };
 
-export const getFunctionParameters = (value) => {
+const getFunctionParameters = (value) => {
     return (Function.toString.call(value))
         .replace(/[/][/].*$/mg,'')
         .replace(/\s+/g, '')
@@ -61,5 +59,14 @@ export const getFunctionParameters = (value) => {
         .split(',').filter(Boolean);
 };
 
-export const magenta = (text) => `\x1b[35m${text}\x1b[0m`;
-export const yellow = (text) => `\x1b[33m${text}\x1b[0m`;
+const magenta = (text) => `\x1b[35m${text}\x1b[0m`;
+const yellow = (text) => `\x1b[33m${text}\x1b[0m`;
+
+module.exports = {
+    getPropertiesDescriptors,
+    mergeOptions,
+    spaces,
+    getFunctionParameters,
+    magenta,
+    yellow,
+};

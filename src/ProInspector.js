@@ -1,6 +1,6 @@
-import * as util from "util";
-import { inspectors, getInspectorByType, } from "../inspectors.js";
-import { getPropertiesDescriptors, magenta, mergeOptions, spaces, } from "./Utilities.js";
+const util = require("util");
+const { inspectors, getInspectorByType, } = require("../inspectors");
+const { getPropertiesDescriptors, magenta, mergeOptions, spaces, } = require("./Utilities");
 
 const defaultOptions = {
     maxDepth: 3,
@@ -106,7 +106,7 @@ const inspect = (entity, options = {}, depth = 1) => {
     return representation;
 };
 
-export const ProInspector = Object.freeze({
+const ProInspector = Object.freeze({
     globalOptions,
     inspector: util.inspect.custom,
     inspect,
@@ -116,3 +116,7 @@ export const ProInspector = Object.freeze({
         };
     },
 });
+
+module.exports = {
+    ProInspector,
+};
